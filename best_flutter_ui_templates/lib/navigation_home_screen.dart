@@ -13,8 +13,8 @@ class NavigationHomeScreen extends StatefulWidget {
 }
 
 class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
-  Widget screenView;
-  DrawerIndex drawerIndex;
+  Widget? screenView;
+  DrawerIndex? drawerIndex;
 
   @override
   void initState() {
@@ -50,24 +50,29 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
   void changeIndex(DrawerIndex drawerIndexdata) {
     if (drawerIndex != drawerIndexdata) {
       drawerIndex = drawerIndexdata;
-      if (drawerIndex == DrawerIndex.HOME) {
-        setState(() {
-          screenView = const MyHomePage();
-        });
-      } else if (drawerIndex == DrawerIndex.Help) {
-        setState(() {
-          screenView = HelpScreen();
-        });
-      } else if (drawerIndex == DrawerIndex.FeedBack) {
-        setState(() {
-          screenView = FeedbackScreen();
-        });
-      } else if (drawerIndex == DrawerIndex.Invite) {
-        setState(() {
-          screenView = InviteFriend();
-        });
-      } else {
-        //do in your way......
+      switch (drawerIndex) {
+        case DrawerIndex.HOME:
+          setState(() {
+            screenView = const MyHomePage();
+          });
+          break;
+        case DrawerIndex.Help:
+          setState(() {
+            screenView = HelpScreen();
+          });
+          break;
+        case DrawerIndex.FeedBack:
+          setState(() {
+            screenView = FeedbackScreen();
+          });
+          break;
+        case DrawerIndex.Invite:
+          setState(() {
+            screenView = InviteFriend();
+          });
+          break;
+        default:
+          break;
       }
     }
   }
